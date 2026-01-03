@@ -8,7 +8,7 @@ from random import randrange
 dir = os.getcwd()+"/data"
 if not os.path.isdir(dir):
     os.mkdir(dir)
-    to_url = f"https://www.myinstants.com/categories/memes/?page=*&name=memes"
+to_url = f"https://www.myinstants.com/categories/memes/?page=*&name=memes"
 
 def download(name, url):
     try:
@@ -28,13 +28,12 @@ def download(name, url):
 
 a = int(input("No of pages to scrape :"))
 
-def geturl(no):
-    return to_url.replace("*", no, 1)
+
 print(f"Starting Loop for {a} no. of pages .")
 for i in range(0, a):
     i=i+1
     count = str(i)
-    get_url = geturl(count)
+    get_url = to_url.replace("*", i, 1)
     page = requests.get(get_url)
     soup = BeautifulSoup(page.content, "html.parser")
     name_results = soup.find_all(class_="instant-link")
